@@ -1,18 +1,13 @@
-import './App.css'
+import CustomCursor from "./components/Cursor/Cursor.jsx";
+import Body from "./components/body/body.jsx";
 
 function App() {
-
   return (
     <>
-      <div>
-       
-      </div>
-      
-      <div className="card">
-       
-      </div>
+      <Body />
+      <CustomCursor />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
