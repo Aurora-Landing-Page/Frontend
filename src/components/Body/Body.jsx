@@ -1,9 +1,193 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 import Loader from "../Loader/Loader.jsx";
-// import "./loader.js"; // Import your JavaScript files here
-// import "./logic.js";
+import toast, { Toaster } from "react-hot-toast";
+import emailjs from "@emailjs/browser";
 
 const Body = () => {
+  const [field, setField] = useState("");
+
+  const [name, setName] = useState("");
+  const [date, setDate] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [college, setCollege] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [VisibleAlert, setVisibleAlert] = useState(false);
+
+  const [emailLabel, setEmailLabel] = useState("Email");
+  const [nameLabel, setNameLabel] = useState("Name");
+  const [dateLabel, setDateLabel] = useState("Date of birth");
+  const [firstNameLabel, setFirstNameLabel] = useState("First Name");
+  const [lastNameLabel, setLastNameLabel] = useState("Last Name");
+  const [phoneLabel, setPhoneLabel] = useState("Phone");
+  const [cityLabel, setCityLabel] = useState("City");
+  const [collegeLabel, setCollegeLabel] = useState("College");
+  const [confirmPasswordLabel, setConfirmPasswordLabel] =
+    useState("ConfirmPassword");
+  const [passwordLabel, setPasswordLabel] = useState("Password");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "name") {
+      setName(e.target.value);
+    } else if (name === "date") {
+      setDate(value);
+      // 2023-11-11
+      setDateLabel("");
+    } else if (name === "email") {
+      setEmail(value);
+
+    } else if (name === "phone") {
+      setPhone(value);
+    } else if (name === "city") {
+      setCity(value);
+    } else if (name === "college") {
+      setCollege(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else if (name === "confirmPassword") {
+      setConfirmPassword(value);
+    }
+  };
+
+  let currentStep = 1;
+
+  const nextStep = (current, next) => {
+    document.getElementById(`step${current}`).style.display = "none";
+    document.getElementById(`step${next}`).style.display = "block";
+    currentStep = next;
+  };
+
+  const prevStep = (current, prev) => {
+    document.getElementById(`step${current}`).style.display = "none";
+    document.getElementById(`step${prev}`).style.display = "block";
+    currentStep = prev;
+  };
+
+  // function ValidateEmail(input) {
+
+  //   var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  //   if (input.value.match(validRegex)) {
+
+
+  //     return true;
+
+  //   } else {
+
+  //     return false;
+
+  //   }
+
+  // }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setVisibleAlert(true);
+
+    if (password != confirmPassword) {
+      toast.error("Passwords does not match");
+      return;
+
+    }
+
+    if (
+      (!name ||
+        !email ||
+        !phone ||
+        !date ||
+        !city ||
+        !college ||
+        !password ||
+        !confirmPassword) 
+        || phone.length != 10 
+        || (password.length < 4 || confirmPassword.length < 4) 
+        || (password.length > 19 || confirmPassword.length > 19) 
+        // || (!ValidateEmail(email))
+    ) {
+
+      toast.error("Please corectly fill the fields!");
+
+      return;
+    }
+
+    const formData = {
+      name: name,
+      email: email,
+      phone: phone,
+      dob: date,
+      gender: "male",
+      city: city,
+      college: college,
+      password: password,
+      confirm_password: confirmPassword,
+    };
+
+    try {
+      setName("");
+      setDate("");
+      setEmail("");
+      setPhone("");
+      setCity("");
+      setCollege("");
+      setPassword("");
+      setConfirmPassword("");
+
+      const response = await axios.post(
+        "https://aurora-nokc.onrender.com/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Form data sent successfully:", response.data);
+
+      toast.success("Registered Succesfully");
+
+    } catch (error) {
+      console.error("Error sending form data:", error.response.data.error);
+
+      toast.error(error.response.data.error);
+
+      return;
+
+    }
+
+    emailjs
+      .send(
+        "service_h4pyzua",
+        "template_963guzs",
+        {
+          from_name: "Aurora Technical Team",
+          to_name: "mrigank",
+          from_email: "parasmahla90@gmail.com",
+          to_email: "mrigankshukla2015@gmail.com",
+        },
+        "4ucRWRGghll2oHzYV"
+      )
+      .then(
+        () => {
+          toast.success("Email sent successfully");
+
+        },
+        (error) => {
+          console.log(error);
+          toast.error("error");  // doubt
+      return;
+
+        }
+      );
+  };
+
   useEffect(() => {
     var background = document.querySelector(".background");
     var party_image = document.querySelector(".party_image");
@@ -24,121 +208,254 @@ const Body = () => {
     var img_grid = document.querySelector(".img_grid");
     var image = document.querySelector(".image");
     video_player.pause();
-
     var alpha = 1;
+    var form = document.querySelector(".formContainer");
     img_grid.style.filter = `opacity(${alpha})`;
     image.style.filter = `opacity(${alpha})`;
+    console.log(window.height);
 
-    window.addEventListener("scroll", () => {
-      document.querySelector(".intro").style.position = "fixed";
-      document.querySelector(".intro").style.top = "200px";
-      const scrollPosition = window.scrollY;
-      alpha = 1 - Math.min(1, (scrollPosition - 156) / 156);
-      img_grid.style.filter = `opacity(${alpha})`;
-      image.style.filter = `opacity(${alpha})`;
-      img_grid.style.filter = `opacity(${alpha})`;
-      image.style.filter = `opacity(${alpha})`;
+    if (screen.height >= 700) {
+      {
+        window.addEventListener("scroll", () => {
+          document.querySelector(".intro").style.position = "fixed";
+          document.querySelector(".intro").style.top = "200px";
+          const scrollPosition = window.scrollY;
+          alpha = 1 - Math.min(1, (scrollPosition - 156) / 156);
+          img_grid.style.filter = `opacity(${alpha})`;
+          image.style.filter = `opacity(${alpha})`;
+          img_grid.style.filter = `opacity(${alpha})`;
+          image.style.filter = `opacity(${alpha})`;
+          console.log(scrollPosition);
+          if (scrollPosition < 1000) {
+            background.style.position = "sticky";
+            background.style.top = "0px";
+            background.style.backgroundSize = `${100 + scrollPosition / 120}% ${100 + scrollPosition / 120
+              }%`;
+            text.style.backdropFilter = `brightness(${100 + (70 * (scrollPosition - 333)) / 667
+              }%)`;
 
-      if (scrollPosition < 1000) {
-        background.style.position = "sticky";
-        background.style.top = "0px";
-        background.style.backgroundSize = `${100 + scrollPosition / 120}% ${
-          100 + scrollPosition / 120
-        }%`;
-        text.style.backdropFilter = `brightness(${
-          100 + (70 * (scrollPosition - 333)) / 667
-        }%)`;
+            auroratext.style.cssText = `top:${35 - (10 * scrollPosition) / 667
+              }%;transform:scale(${1 - (0.2 * scrollPosition) / 667
+              });color:rgba(255,2555,255,${1 - (2 * scrollPosition) / 667})`;
+            after_text.style.cssText = `top:${Math.max(
+              35,
+              51 - (16 * (scrollPosition - 333)) / 334
+            )}%;transform:scale(${1 - (0.2 * scrollPosition) / 667
+              });color:rgba(255,2555,255,${(2 * (scrollPosition - 333)) / 667})`;
+          } else if (scrollPosition > 653 && scrollPosition < 1000) {
+            introhead.style.color = "black";
+            discription.style.color = "black";
+            video_player.style.filter = "opacity(0)";
+          } else if (scrollPosition > 1000 && scrollPosition < 1831) {
+          } else if (scrollPosition > 653 && scrollPosition < 1000) {
+            introhead.style.color = "black";
+            video_player.style.filter = "opacity(0)";
+          } else if (scrollPosition > 1000 && scrollPosition < 1831) {
+            background.style.position = "relative";
+            background.style.top = "535px";
+            introhead.style.color = "black";
+            discription.style.color = "black";
+          } else if (scrollPosition > 1831 && scrollPosition < 2100) {
+            introhead.style.color = `rgba(255,255,255,${Math.min(
+              1,
+              (scrollPosition - 1831) / 200
+            )})`;
+            introhead.style.fontSize = `${Math.min(
+              5.8,
+              (5.02 * scrollPosition) / 1831
+            )}rem`;
+          } else if (scrollPosition > 2100 && scrollPosition < 2400) {
+            introhead.style.marginTop = `${Math.max(
+              -18,
+              (-18 * (scrollPosition - 2100)) / 300
+            )}vh`;
+            introhead.style.fontSize = `${Math.min(
+              5.8,
+              5.8 * (1 - (scrollPosition - 2100) / 3000)
+            )}rem`;
+            discription.style.color = "black";
+          } else if (scrollPosition > 2400 && scrollPosition < 2750) {
+            discription.style.color = `rgba(255,255,255,${(scrollPosition - 2400) / 750
+              })`;
+            document.querySelector(".intro").style.position = "fixed";
+            document.querySelector(".intro").style.top = "200px";
+            video_player.setAttribute("controls", false);
+            form.style.visibility = "hidden";
+            video_player.pause();
+            video_player.style.filter = `opacity(${Math.max(
+              0,
+              (3700 - scrollPosition) / 300
+            )})`;
+            video.style.filter = "opacity(0)";
+            // video_player.style.visibility="hidden"
+          } else if (scrollPosition > 2750) {
+            video_player.style.visibility = "visible";
 
-        auroratext.style.cssText = `top:${
-          35 - (10 * scrollPosition) / 667
-        }%;transform:scale(${
-          1 - (0.2 * scrollPosition) / 667
-        });color:rgba(255,2555,255,${1 - (2 * scrollPosition) / 667})`;
-        after_text.style.cssText = `top:${Math.max(
-          35,
-          51 - (16 * (scrollPosition - 333)) / 334
-        )}%;transform:scale(${
-          1 - (0.2 * scrollPosition) / 667
-        });color:rgba(255,2555,255,${(2 * (scrollPosition - 333)) / 667})`;
-      } else if (scrollPosition > 1000 && scrollPosition < 1831) {
-        background.style.position = "relative";
-        background.style.top = "900px";
-      } else if (scrollPosition > 1831 && scrollPosition < 2100) {
-        console.log("hey");
-        introhead.style.color = `rgba(255,255,255,${Math.min(
-          1,
-          (scrollPosition - 1831) / 200
-        )})`;
-        introhead.style.fontSize = `${Math.min(
-          5.8,
-          (5.02 * scrollPosition) / 1831
-        )}rem`;
-      } else if (scrollPosition > 2100 && scrollPosition < 2400) {
-        console.log("moving we are back");
-        introhead.style.marginTop = `${Math.max(
-          -18,
-          (-18 * (scrollPosition - 2100)) / 300
-        )}vh`;
-        introhead.style.fontSize = `${Math.min(
-          5.8,
-          5.8 * (1 - (scrollPosition - 2100) / 3000)
-        )}rem`;
-      } else if (scrollPosition > 2400 && scrollPosition < 2750) {
-        console.log("discription comes in");
-        discription.style.color = `rgba(255,255,255,${
-          (scrollPosition - 2400) / 750
-        })`;
+            document.querySelector(".intro").style.position = "relative";
+            document.querySelector(".intro").style.top = "1900px";
+            video_player.setAttribute("controls", true);
+            video_player.play();
+            video.style.filter = `opacity(${Math.max(
+              0,
+              (scrollPosition - 2750) / 400
+            )})`;
+          }
+
+          if (scrollPosition > 3400) {
+            video_player.pause();
+
+            video.style.filter = `opacity(${Math.max(
+              0,
+              (3700 - scrollPosition) / 300
+            )})`;
+          }
+          if (scrollPosition > 3500) {
+            form.style.visibility = "visible";
+            counter.style.cssText = ` background: -webkit-linear-gradient(180deg,rgba(255,0,0,${(scrollPosition - 3500) / 300
+              }), rgb(255,155,0,${(scrollPosition - 3700) / 500}));
+            -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;`;
+            form.style.filter = "opacity(0);";
+          }
+          if (scrollPosition > 3750) {
+            form.style.filter = `opacity(${(scrollPosition - 3750) / 50})`;
+            function incrementor(cls, start, end, duration) {
+              let obj = document.querySelector(`.${cls}`),
+                current = start,
+                range = end - start,
+                increment = end > start ? 25 : -25,
+                step = Math.abs(Math.floor(duration / range)),
+                timer = setInterval(() => {
+                  current += increment;
+                  obj.textContent = current + "+";
+                  if (current == end) {
+                    clearInterval(timer);
+                    reg.value = 1;
+                  }
+                }, step);
+            }
+            if (reg.value == 0) {
+              incrementor("reg_counter", 0, 4000, 1);
+            }
+          }
+        });
+      }
+    } else if (screen.height <= 700) {
+      window.addEventListener("scroll", () => {
+        console.log(" lhell");
         document.querySelector(".intro").style.position = "fixed";
         document.querySelector(".intro").style.top = "200px";
-        video_player.setAttribute("controls", false);
-        video_player.pause();
-      } else if (scrollPosition > 2750) {
-        document.querySelector(".intro").style.position = "relative";
-        document.querySelector(".intro").style.top = "1900px";
-        video_player.setAttribute("controls", true);
-        video_player.play();
-        video.style.filter = `opacity(${Math.min(
-          1,
-          (scrollPosition - 2750) / 400
-        )})`;
-      }
+        const scrollPosition = 0.7 * window.scrollY;
+        console.log(scrollPosition);
+        alpha = 1 - Math.min(1, (scrollPosition - 156) / 156);
+        img_grid.style.filter = `opacity(${alpha})`;
+        image.style.filter = `opacity(${alpha})`;
+        img_grid.style.filter = `opacity(${alpha})`;
+        image.style.filter = `opacity(${alpha})`;
+        form.style.cssText += "transform:scale(0);";
 
-      if (scrollPosition > 3400) {
-        video_player.pause();
-        video.style.filter = `opacity(${Math.max(
-          0,
-          (3700 - scrollPosition) / 300
-        )})`;
-      }
-      if (scrollPosition > 3700) {
-        counter.style.cssText = ` background: -webkit-linear-gradient(180deg,rgba(255,0,0,${
-          (scrollPosition - 3700) / 300
-        }), rgb(255,155,0,${(scrollPosition - 3700) / 500}));
-        -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;`;
-      }
-      if (scrollPosition > 3750) {
-        function incrementor(cls, start, end, duration) {
-          let obj = document.querySelector(`.${cls}`),
-            current = start,
-            range = end - start,
-            increment = end > start ? 25 : -25,
-            step = Math.abs(Math.floor(duration / range)),
-            timer = setInterval(() => {
-              current += increment;
-              obj.textContent = current + "+";
-              if (current == end) {
-                clearInterval(timer);
-                reg.value = 1;
-              }
-            }, step);
-        }
-        if (reg.value == 0) {
-          incrementor("reg_counter", 0, 4000, 1);
-        }
-      }
-    });
+        if (scrollPosition < 653) {
+          background.style.position = "sticky";
+          background.style.top = "0px";
+          background.style.backgroundSize = `${200 + scrollPosition / 120}% ${90 + scrollPosition / 120
+            }%`;
+          text.style.backdropFilter = `brightness(${100 + (70 * (scrollPosition - 333)) / 667
+            }%)`;
+          auroratext.style.cssText = `top:${35 - (10 * scrollPosition) / 667
+            }%;transform:scale(${1 - (0.2 * scrollPosition) / 667
+            });color:rgba(255,2555,255,${1 - (2 * scrollPosition) / 667})`;
+          after_text.style.cssText = `top:${Math.max(
+            35,
+            51 - (16 * (scrollPosition - 333)) / 334
+          )}%;transform:scale(${1 - (0.2 * scrollPosition) / 667
+            });color:rgba(255,2555,255,${(2 * (scrollPosition - 333)) / 667})`;
+          introhead.style.color = "black";
+          discription.style.color = "black";
+          video_player.style.filter = "opacity(0)";
+        } else if (scrollPosition > 653 && scrollPosition < 933) {
+          background.style.position = "absolute";
+          background.style.top = "180px";
+          introhead.style.color = `rgba(255,255,255,${Math.min(
+            1,
+            (scrollPosition - 700) / 200
+          )})`;
+          introhead.style.fontSize = `${Math.min(
+            5.8,
+            (5.02 * scrollPosition) / 931
+          )}rem`;
+        } else if (scrollPosition > 840 && scrollPosition < 1353) {
+          introhead.style.marginTop = `${Math.max(
+            -50,
+            (-50 * (scrollPosition - 840)) / 500
+          )}vh`;
+          introhead.style.fontSize = `${Math.min(
+            5.8,
+            5.8 * (1 - (scrollPosition - 840) / 3000)
+          )}rem`;
+          discription.style.color = "black";
+          video_player.style.filter = "opacity(0)";
+        } else if (scrollPosition > 1353 && scrollPosition < 1600) {
+          discription.style.color = `rgba(255,255,255,${(scrollPosition - 1353) / 750
+            })`;
+          document.querySelector(".intro").style.position = "fixed";
+          document.querySelector(".intro").style.top = "200px";
+          video_player.setAttribute("controls", false);
+          video_player.pause();
+        } else if (scrollPosition > 1600) {
+          document.querySelector(".intro").style.position = "relative";
+          document.querySelector(".intro").style.top = "2010px";
+          video_player.setAttribute("controls", true);
 
+          video.style.filter = `opacity(${Math.min(
+            1,
+            (scrollPosition - 1600) / 300
+          )})`;
+        }
+        if (scrollPosition > 1715) {
+          video_player.play();
+        }
+
+        if (scrollPosition > 1900) {
+          video_player.pause();
+          video.style.filter = `opacity(${Math.max(
+            0,
+            (2210 - scrollPosition) / 300
+          )})`;
+        }
+        if (scrollPosition > 2000) {
+          counter.style.cssText = ` background: -webkit-linear-gradient(180deg,rgba(255,0,0,${(scrollPosition - 2000) / 300
+            }), rgb(255,155,0,${(scrollPosition - 2000) / 500}));
+            -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;`;
+          form.style.cssText += "transform:scale(0);";
+        }
+        if (scrollPosition > 2100) {
+          form.style.cssText += "transform:scale(1)";
+
+          function incrementor(cls, start, end, duration) {
+            let obj = document.querySelector(`.${cls}`),
+              current = start,
+              range = end - start,
+              increment = end > start ? 25 : -25,
+              step = Math.abs(Math.floor(duration / range)),
+              timer = setInterval(() => {
+                current += increment;
+                obj.textContent = current + "+";
+                if (current == end) {
+                  clearInterval(timer);
+                  reg.value = 1;
+                }
+              }, step);
+          }
+          if (scrollPosition > 2200) {
+            form.style.filter = `opacity(${(scrollPosition - 2200) / 200})`;
+          }
+          if (reg.value == 0) {
+            incrementor("reg_counter", 0, 4000, 1);
+          }
+        }
+      });
+    }
     function move(event) {
       let rect = text.getBoundingClientRect();
       let centerX = rect.width / 2 - rect.left;
@@ -163,16 +480,24 @@ const Body = () => {
       });
     }
     window.addEventListener("mousemove", move);
+
+
+
   }, []);
 
-  
- 
+  const [loading, setLoading] = useState(true);
 
-
+  useEffect(() => {
+    // Simulate a loading delay
+    setTimeout(() => {
+      setLoading(false);
+    }, 4500); // Adjust the delay time as needed
+  }, []);
 
   return (
     <>
       {loading ? <Loader /> : null}
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="megaa" style={{ display: "none" }}>
         <div className="contain">
           <div id="wrapper" data-configuration="1" data-roundness="1">
@@ -265,6 +590,8 @@ const Body = () => {
               <div className="After_text ">COMING SOON</div>
             </div>
           </div>
+          <div ></div>
+          <div ></div>
           <div className="intro">
             <div className="intro_head">
               We are back <span>!</span>
@@ -280,14 +607,14 @@ const Body = () => {
               witness an entrancing blend of talent, a mesmerizing kaleidoscope
               of creativity, and an outpouring of innovative brilliance.
             </div>
-            <div class="cursor">
-              <div class="cursor__ball cursor__ball--big ">
+            <div >
+              <div className="cursor__ball cursor__ball--big ">
                 <svg height="30" width="30">
                   <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
                 </svg>
               </div>
 
-              <div class="cursor__ball cursor__ball--small">
+              <div className="cursor__ball cursor__ball--small">
                 <svg height="10" width="10">
                   <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
                 </svg>
@@ -338,14 +665,17 @@ const Body = () => {
               </div>
 
               <form>
-                <div className="input-control">
+                <div className="input-control tab" id="step1">
                   <div className="field">
-                    <label className="input-label" htmlFor="firstName">
-                      First Name
-                    </label>
+                    {!name && <label className="input-label" htmlFor="name">
+                      {nameLabel}
+                    </label>}
                     <input
                       type="text"
-                      id="firstName"
+                      id="name"
+                      value={name}
+                      name="name"
+                      onChange={handleInputChange}
                       className="focus"
                       autoComplete="off"
                       required=""
@@ -353,20 +683,27 @@ const Body = () => {
                   </div>
 
                   <div className="field">
-                    <label htmlFor="lastName"> Last Name</label>
+                    {!date && <span htmlFor="DOB"> {dateLabel}</span>}
+
                     <input
-                      type="text"
-                      id="lastName"
-                      className="focus"
+                      id="date" className="focus"
+                      type="date"
+                      value={date}
+                      onChange={handleInputChange}
+                      name="date"
                       autoComplete="off"
                       required=""
+                      endIc
                     />
                   </div>
                   <div className="field">
-                    <label htmlFor="email"> Email</label>
+                    {!email && <label htmlFor="email"> {emailLabel}</label>}
                     <input
                       type="email"
                       id="email"
+                      value={email}
+                      name="email"
+                      onChange={handleInputChange}
                       className="focus"
                       autoComplete="off"
                       required=""
@@ -374,28 +711,120 @@ const Body = () => {
                   </div>
 
                   <div className="field">
-                    <label htmlFor="phone"> Phone</label>
+                    {!phone && <label htmlFor="phone">{phoneLabel}</label>}
                     <input
-                      type="number"
+                      type="text"
                       id="phone"
+                      value={phone}
+                      name="phone"
+                      onChange={handleInputChange}
                       className="focus"
                       autoComplete="off"
                       required=""
                     />
                   </div>
+                  <div className="submClass">
+                    <button
+                      className="regButton"
+                      id="regButton"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        nextStep(1, 2);
+                      }}
+                    >
+                      NEXT
+                    </button>
+                  </div>
                 </div>
-                <div className="submClass">
-                  <button className="regButton" id="regButton">
-                    <p>Submit</p>
-                  </button>
+
+                <div
+                  className="input-control control2 tab"
+                  id="step2"
+                  style={{ display: "none" }}
+                >
+                  <div className="field">
+                    {!city && <label className="input-label" htmlFor="city">
+                      {cityLabel}
+                    </label>}
+                    <input
+                      type="text"
+                      id="city"
+                      value={city}
+                      name="city"
+                      onChange={handleInputChange}
+                      className="focus"
+                      autoComplete="off"
+                      required=""
+                    />
+                  </div>
+
+                  <div className="field">
+                    {!college && <label htmlFor="college"> {collegeLabel}</label>}
+                    <input
+                      type="text"
+                      id="college"
+                      value={college}
+                      name="college"
+                      onChange={handleInputChange}
+                      className="focus"
+                      autoComplete="off"
+                      required=""
+                    />
+                  </div>
+                  <div className="field">
+                    {!password && <label htmlFor="password"> {passwordLabel}</label>}
+                    <input
+                      type="password"
+                      id="password"
+                      value={password}
+                      name="password"
+                      onChange={handleInputChange}
+                      className="focus"
+                      autoComplete="off"
+                      required=""
+                    />
+                  </div>
+
+                  <div className="field">
+                    {!confirmPassword && <label htmlFor="confirmPassword">
+                      {confirmPasswordLabel}
+                    </label>}
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      value={confirmPassword}
+                      name="confirmPassword"
+                      onChange={handleInputChange}
+                      className="focus"
+                      autoComplete="off"
+                      required=""
+                    />
+                  </div>
+                  <div className="submClass1 ">
+                    <button
+                      className="regButton"
+                      id="regButton"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        prevStep(2, 1);
+                      }}
+                    >
+                      PREVIOUS
+                    </button>
+                    <button
+                      className="regButton"
+                      id="regButton"
+                      onClick={handleSubmit}
+                    >
+                      <p>SUBMIT</p>
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <script src="./loader.js"></script>
-      <script src="./logic.js"></script>
     </>
   );
 };
