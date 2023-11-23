@@ -207,7 +207,7 @@ const Body = () => {
     var wheel2 = document.querySelector(".wheel2");
     var img_grid = document.querySelector(".img_grid");
     var image = document.querySelector(".image");
-    video_player.pause();
+    // video_player.pause();
     var alpha = 1;
     var form = document.querySelector(".formContainer");
     img_grid.style.filter = `opacity(${alpha})`;
@@ -281,7 +281,7 @@ const Body = () => {
             document.querySelector(".intro").style.top = "200px";
             video_player.setAttribute("controls", false);
             form.style.visibility = "hidden";
-            video_player.pause();
+            // video_player.pause();
             video_player.style.filter = `opacity(${Math.max(
               0,
               (3700 - scrollPosition) / 300
@@ -294,7 +294,7 @@ const Body = () => {
             document.querySelector(".intro").style.position = "relative";
             document.querySelector(".intro").style.top = "1900px";
             video_player.setAttribute("controls", true);
-            video_player.play();
+            // video_player.play();
             video.style.filter = `opacity(${Math.max(
               0,
               (scrollPosition - 2750) / 400
@@ -302,7 +302,7 @@ const Body = () => {
           }
 
           if (scrollPosition > 3400) {
-            video_player.pause();
+            // video_player.pause();
 
             video.style.filter = `opacity(${Math.max(
               0,
@@ -400,7 +400,7 @@ const Body = () => {
           document.querySelector(".intro").style.position = "fixed";
           document.querySelector(".intro").style.top = "200px";
           video_player.setAttribute("controls", false);
-          video_player.pause();
+          // video_player.pause();
         } else if (scrollPosition > 1600) {
           document.querySelector(".intro").style.position = "relative";
           document.querySelector(".intro").style.top = "2010px";
@@ -412,11 +412,11 @@ const Body = () => {
           )})`;
         }
         if (scrollPosition > 1715) {
-          video_player.play();
+          // video_player.play();
         }
 
         if (scrollPosition > 1900) {
-          video_player.pause();
+          // video_player.pause();
           video.style.filter = `opacity(${Math.max(
             0,
             (2210 - scrollPosition) / 300
@@ -623,13 +623,13 @@ const Body = () => {
             <div className="Video">
               OFFICIAL TRAILER
               <br />
-              <video width="100%" height="100%" className="video_player">
+              {/* <video width="100%" height="100%" className="video_player">
                 <source
                   src="../../public/assets/final teaser.mp4"
                   type="video/mp4"
                 />
-              </video>
-              {/* <iframe width="560" className="video_player" height="315" src="https://www.youtube.com/embed/DTgMv_318u4?si=c9eXZuHlermkqhvH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+              </video> */}
+              <iframe width="560" height="315" className="video_player embed" src="https://www.youtube.com/embed/KH8TpOLROOQ?si=LuehfpiF2UK1YDUI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 
             </div>
             <div className="counter">
