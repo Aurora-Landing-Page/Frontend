@@ -629,6 +629,8 @@ const Body = () => {
                   type="video/mp4"
                 />
               </video>
+              {/* <iframe width="560" className="video_player" height="315" src="https://www.youtube.com/embed/DTgMv_318u4?si=c9eXZuHlermkqhvH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+                
             </div>
             <div className="counter">
               <span className="reg_counter">0</span>
