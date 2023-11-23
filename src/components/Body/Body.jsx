@@ -176,7 +176,7 @@ const Body = () => {
       )
       .then(
         () => {
-          toast.success("Email sent successfully");
+          toast.success("Please Cheak you email!");
 
         },
         (error) => {
@@ -335,7 +335,7 @@ const Body = () => {
                 }, step);
             }
             if (reg.value == 0) {
-              incrementor("reg_counter", 0, 4000, 1);
+              incrementor("reg_counter", 0, 1000, 1);
             }
           }
         });
