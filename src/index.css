@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/variane-script');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +8,8 @@
   cursor: default;
 
 }
+
+
 
 body {
   background-color: #000000;
@@ -50,7 +54,8 @@ body {
   align-items: center;
   width: 100%;
   border-radius: 3rem;
-  background-color: rgba(0, 0, 0, 0.304);
+  background-color: rgb(40 31 31 / 30%);
+  ;
   backdrop-filter: blur(10px);
 }
 
@@ -168,6 +173,11 @@ body {
 .After_text {
   color: white;
   font-family: "myFirstFont";
+  /* font-family: 'Variane Script Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Variane Script Regular'), url('../public/assets/Variane Script.woff') format('woff'); */
+
   font-size: clamp(2.3rem, -0.6234rem + 8.9677vw, 7.98rem);
   position: absolute;
   z-index: 8;
@@ -255,6 +265,7 @@ body {
 
 .Aurora23_text {
   top: 35%;
+  
 }
 
 .text {
@@ -345,7 +356,7 @@ body {
 
 .embed {
   width: 100%;
-  height: 700px;
+  height: 1000px;
   margin-top: 50px;
 
 }
@@ -353,7 +364,7 @@ body {
 .counter {
   position: relative;
   top: clamp(6.25rem, 1.0105rem + 11.976vw, 12.5rem);
-  height: 230px;
+  height: 245px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
@@ -1233,3 +1244,5 @@ h1>.magic>.magic-text {
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+/* loader */

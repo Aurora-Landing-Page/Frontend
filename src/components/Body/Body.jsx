@@ -10,6 +10,8 @@ const Body = () => {
 
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
+  const [defaultDate, setDefaultDate] = useState("");
+
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
@@ -20,7 +22,7 @@ const Body = () => {
 
   const [emailLabel, setEmailLabel] = useState("Email");
   const [nameLabel, setNameLabel] = useState("Name");
-  const [dateLabel, setDateLabel] = useState("Date of birth");
+  const [dateLabel, setDateLabel] = useState("DOB");
   const [firstNameLabel, setFirstNameLabel] = useState("First Name");
   const [lastNameLabel, setLastNameLabel] = useState("Last Name");
   const [phoneLabel, setPhoneLabel] = useState("Phone");
@@ -36,9 +38,17 @@ const Body = () => {
     if (name === "name") {
       setName(e.target.value);
     } else if (name === "date") {
-      setDate(value);
+      const year = parseInt(value.substring(0, 4), 10);
+
+      if (year < 1985 || year > 2010) {
+        setDateLabel("Invalid DOB");
+        console.log("Invalid DOB");
+        
+      } else {
+        setDateLabel("DOB");
+        setDate(value);
+      }
       // 2023-11-11
-      setDateLabel("");
     } else if (name === "email") {
       setEmail(value);
 
@@ -69,33 +79,11 @@ const Body = () => {
     currentStep = prev;
   };
 
-  // function ValidateEmail(input) {
-
-  //   var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  //   if (input.value.match(validRegex)) {
-
-
-  //     return true;
-
-  //   } else {
-
-  //     return false;
-
-  //   }
-
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setVisibleAlert(true);
-
-    if (password != confirmPassword) {
-      toast.error("Passwords does not match");
-      return;
-
-    }
 
     if (
       (!name ||
@@ -105,16 +93,30 @@ const Body = () => {
         !city ||
         !college ||
         !password ||
-        !confirmPassword) 
-        || phone.length != 10 
-        || (password.length < 4 || confirmPassword.length < 4) 
-        || (password.length > 19 || confirmPassword.length > 19) 
-        // || (!ValidateEmail(email))
+        !confirmPassword)
+      || phone.length != 10
+      || (password.length < 4 || confirmPassword.length < 4)
+      || (password.length > 19 || confirmPassword.length > 19)
     ) {
 
       toast.error("Please corectly fill the fields!");
 
       return;
+    }
+
+    const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
+
+    if (!regexExp.test(email)) {
+      toast.error("Please enter a valid email address!");
+
+      return;
+
+    }
+
+    if (password != confirmPassword) {
+      toast.error("Passwords does not match");
+      return;
+
     }
 
     const formData = {
@@ -130,14 +132,18 @@ const Body = () => {
     };
 
     try {
-      setName("");
-      setDate("");
-      setEmail("");
-      setPhone("");
-      setCity("");
-      setCollege("");
-      setPassword("");
-      setConfirmPassword("");
+      // setName("");
+      // setDate("");
+      // setEmail("");
+      // setPhone("");
+      // setCity("");
+      // setCollege("");
+      // setPassword("");
+      // setConfirmPassword("");
+
+      nextStep(2, 1);
+
+      toast.success("Thanks for filling the form!");
 
       const response = await axios.post(
         "https://aurora-nokc.onrender.com/register",
@@ -168,21 +174,21 @@ const Body = () => {
         "template_963guzs",
         {
           from_name: "Aurora Technical Team",
-          to_name: "mrigank",
+          to_name: {mrigank},
           from_email: "parasmahla90@gmail.com",
-          to_email: "mrigankshukla2015@gmail.com",
+          to_email: {email},
         },
         "4ucRWRGghll2oHzYV"
       )
       .then(
         () => {
-          toast.success("Please Cheak you email!");
+          toast.success("Please check your email!");
 
         },
         (error) => {
           console.log(error);
           toast.error("error");  // doubt
-      return;
+          return;
 
         }
       );
@@ -207,7 +213,7 @@ const Body = () => {
     var wheel2 = document.querySelector(".wheel2");
     var img_grid = document.querySelector(".img_grid");
     var image = document.querySelector(".image");
-    // video_player.pause();
+    video_player.pause();
     var alpha = 1;
     var form = document.querySelector(".formContainer");
     img_grid.style.filter = `opacity(${alpha})`;
@@ -281,7 +287,7 @@ const Body = () => {
             document.querySelector(".intro").style.top = "200px";
             video_player.setAttribute("controls", false);
             form.style.visibility = "hidden";
-            // video_player.pause();
+            video_player.pause();
             video_player.style.filter = `opacity(${Math.max(
               0,
               (3700 - scrollPosition) / 300
@@ -294,7 +300,7 @@ const Body = () => {
             document.querySelector(".intro").style.position = "relative";
             document.querySelector(".intro").style.top = "1900px";
             video_player.setAttribute("controls", true);
-            // video_player.play();
+            video_player.play();
             video.style.filter = `opacity(${Math.max(
               0,
               (scrollPosition - 2750) / 400
@@ -302,7 +308,7 @@ const Body = () => {
           }
 
           if (scrollPosition > 3400) {
-            // video_player.pause();
+            video_player.pause();
 
             video.style.filter = `opacity(${Math.max(
               0,
@@ -400,7 +406,7 @@ const Body = () => {
           document.querySelector(".intro").style.position = "fixed";
           document.querySelector(".intro").style.top = "200px";
           video_player.setAttribute("controls", false);
-          // video_player.pause();
+          video_player.pause();
         } else if (scrollPosition > 1600) {
           document.querySelector(".intro").style.position = "relative";
           document.querySelector(".intro").style.top = "2010px";
@@ -412,11 +418,11 @@ const Body = () => {
           )})`;
         }
         if (scrollPosition > 1715) {
-          // video_player.play();
+          video_player.play();
         }
 
         if (scrollPosition > 1900) {
-          // video_player.pause();
+          video_player.pause();
           video.style.filter = `opacity(${Math.max(
             0,
             (2210 - scrollPosition) / 300
@@ -492,6 +498,13 @@ const Body = () => {
     setTimeout(() => {
       setLoading(false);
     }, 4500); // Adjust the delay time as needed
+  }, []);
+
+  useEffect(() => {
+    const date = new Date();
+    const futureDate = date.getDate() - 8728;
+    date.setDate(futureDate);
+    setDate(date.toLocaleDateString('en-CA'));
   }, []);
 
   return (
@@ -597,7 +610,7 @@ const Body = () => {
               We are back <span>!</span>
             </div>
             <div className="discription">
-              Get ready to immerse yourself in the rekindled magic of 'Aurora,'
+              Get ready to immerse yourself in the rekindled magic of 'Aurora'
               as the beloved annual cultural fest of ABVIIITM is set to make its
               grand return in 2024. This year, Aurora will come back with an
               aesthetic magnificence that will promise to be a breathtaking
@@ -623,14 +636,14 @@ const Body = () => {
             <div className="Video">
               OFFICIAL TRAILER
               <br />
-              {/* <video width="100%" height="100%" className="video_player">
+              <video width="100%" height="100%" className="video_player">
                 <source
                   src="../../public/assets/final teaser.mp4"
                   type="video/mp4"
                 />
-              </video> */}
-              <iframe width="560" height="315" className="video_player embed" src="https://www.youtube.com/embed/DTgMv_318u4?si=s-nhuoWl9P0bG5wS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                
+              </video>
+              {/* <iframe width="560" height="315" className="video_player embed" src="https://www.youtube.com/embed/DTgMv_318u4?si=s-nhuoWl9P0bG5wS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> */}
+
             </div>
             <div className="counter">
               <span className="reg_counter">0</span>
@@ -685,7 +698,7 @@ const Body = () => {
                   </div>
 
                   <div className="field">
-                    {!date && <span htmlFor="DOB"> {dateLabel}</span>}
+                    <span htmlFor="DOB"> {dateLabel}</span>
 
                     <input
                       id="date" className="focus"
