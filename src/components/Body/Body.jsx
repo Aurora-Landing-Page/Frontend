@@ -132,21 +132,21 @@ const Body = () => {
     };
 
     try {
-      // setName("");
-      // setDate("");
-      // setEmail("");
-      // setPhone("");
-      // setCity("");
-      // setCollege("");
-      // setPassword("");
-      // setConfirmPassword("");
+      setName("");
+      setDate("");
+      setEmail("");
+      setPhone("");
+      setCity("");
+      setCollege("");
+      setPassword("");
+      setConfirmPassword("");
 
       nextStep(2, 1);
 
       toast.success("Thanks for filling the form!");
 
       const response = await axios.post(
-        "https://aurora-nokc.onrender.com/register",
+        "http://localhost:5000/register",
         formData,
         {
           headers: {
@@ -168,30 +168,52 @@ const Body = () => {
 
     }
 
-    emailjs
-      .send(
-        "service_h4pyzua",
-        "template_963guzs",
+    try{
+      const response = await axios.post(
+        // "https://aurora-nokc.onrender.com/email",
+        "http://localhost:5000/mail",
         {
-          from_name: "Aurora Technical Team",
-          to_name: {mrigank},
-          from_email: "parasmahla90@gmail.com",
-          to_email: {email},
+          name: name,
+          email:email
         },
-        "4ucRWRGghll2oHzYV"
-      )
-      .then(
-        () => {
-          toast.success("Please check your email!");
-
-        },
-        (error) => {
-          console.log(error);
-          toast.error("error");  // doubt
-          return;
-
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
+      if(response.status == 200)
+      {
+        toast.success("Please check your email!");
+      }
+    }catch(e)
+    {
+      console.log(e)
+    }
+    // emailjs
+    //   .send(
+    //     "service_h4pyzua",
+    //     "template_963guzs",
+    //     {
+    //       from_name: "Aurora Technical Team",
+    //       to_name: {mrigank},
+    //       from_email: "parasmahla90@gmail.com",
+    //       to_email: {email},
+    //     },
+    //     "4ucRWRGghll2oHzYV"
+    //   )
+    //   .then(
+    //     () => {
+    //       toast.success("Please check your email!");
+
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //       toast.error("error");  // doubt
+    //       return;
+
+    //     }
+    //   );
   };
 
   useEffect(() => {
