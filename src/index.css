@@ -399,6 +399,7 @@ body {
   /* padding: 100px; */
   padding-top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   background-color: #141622;
@@ -458,6 +459,12 @@ body {
 .form .heading p {
   text-align: center;
   font-size: clamp(1.5625rem, 1.0385rem + 1.1976vw, 2.1875rem);
+}
+.form_main{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 5%;
 }
 
 .heading {
@@ -1251,4 +1258,34 @@ h1>.magic>.magic-text {
   filter: invert(1);
 }
 
+
+.footer_heading{
+  color: rgb(131, 131, 131);
+
+  font-size: 1.9em;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.parent_link{
+  display: flex;
+  justify-content: start;
+  margin-top: 4px;
+  gap: 1.5%;
+  width: 80%;
+}
+.parent_link a{
+  font-size: 1.8rem;
+  color: white;
+  transition: 0.12s color linear;
+}
+.parent_link a:hover{
+  color: orangered;
+}
+.footer{
+ width: 100vw;
+ margin-left: 16vw;
+margin-top: 5vh;
+display: flex;
+justify-content: start;
+gap: 2%;
+}
 /* loader */

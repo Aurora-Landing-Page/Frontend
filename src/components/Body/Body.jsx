@@ -4,6 +4,7 @@ import axios from "axios";
 import Loader from "../Loader/Loader.jsx";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
+import Footer from "../Footer/Footer.jsx";
 
 const Body = () => {
   const [field, setField] = useState("");
@@ -533,6 +534,7 @@ const Body = () => {
     <>
       {loading ? <Loader /> : null}
       <Toaster position="top-center" reverseOrder={false} />
+
       <div className="megaa" style={{ display: "none" }}>
         <div className="contain">
           <div id="wrapper" data-configuration="1" data-roundness="1">
@@ -569,6 +571,7 @@ const Body = () => {
         </div>
         <div id="loader">00 %</div>
       </div>
+
       <div className="wrapper">
         <div className="nav">
           <div className="logo">
@@ -579,6 +582,7 @@ const Body = () => {
             REGISTER
           </a>
         </div>
+
         <div className="mainbody">
           <div className="background">
             <div className="img_grid">
@@ -625,8 +629,10 @@ const Body = () => {
               <div className="After_text ">COMING SOON</div>
             </div>
           </div>
+
           <div ></div>
           <div ></div>
+
           <div className="intro">
             <div className="intro_head">
               We are back <span>!</span>
@@ -672,200 +678,209 @@ const Body = () => {
               <div className="reg_text">Registrations done so far</div>
             </div>
           </div>
+
           <div className="formContainer" id="formContainer">
-            <div className="left">
-              <div className="leftcontainer">
-                <h1 className="text1">
-                  REGISTRATIONS
-                  <span className="bgSpan" id="spanish">
-                    GET
-                  </span>
-                </h1>
-                <h1 className="text1">
-                  ARE<span className="bgSpan">READY</span>
-                </h1>
-                <h1 className="text1">
-                  OPEN<span className="bgSpan">FOR</span>
-                </h1>
-                <h1 className="text1 textSpecial">
-                  NOW<span className="bgSpan">AURORA 2024</span>
-                </h1>
+            <div className="form_main">
+              <div className="left">
+                <div className="leftcontainer">
+                  <h1 className="text1">
+                    REGISTRATIONS
+                    <span className="bgSpan" id="spanish">
+                      GET
+                    </span>
+                  </h1>
+                  <h1 className="text1">
+                    ARE<span className="bgSpan">READY</span>
+                  </h1>
+                  <h1 className="text1">
+                    OPEN<span className="bgSpan">FOR</span>
+                  </h1>
+                  <h1 className="text1 textSpecial">
+                    NOW<span className="bgSpan">AURORA 2024</span>
+                  </h1>
+                </div>
               </div>
-            </div>
-            <div className="form">
-              <div className="heading">
-                <hr />
-                <div className="diamond"></div>
-                <p>REGISTER</p>
-                <div className="diamond"></div>
-                <hr />
-              </div>
-
-              <form>
-                <div className="input-control tab" id="step1">
-                  <div className="field">
-                    {!name && <label className="input-label" htmlFor="name">
-                      {nameLabel}
-                    </label>}
-                    <input
-                      type="text"
-                      id="name"
-                      value={name}
-                      name="name"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
-                  </div>
-
-                  <div className="field">
-                    <span htmlFor="DOB"> {dateLabel}</span>
-
-                    <input
-                      id="date" className="focus"
-                      type="date"
-                      value={date}
-                      onChange={handleInputChange}
-                      name="date"
-                      autoComplete="off"
-                      required=""
-                      endIc
-                    />
-                  </div>
-                  <div className="field">
-                    {!email && <label htmlFor="email"> {emailLabel}</label>}
-                    <input
-                      type="email"
-                      id="email"
-                      value={email}
-                      name="email"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
-                  </div>
-
-                  <div className="field">
-                    {!phone && <label htmlFor="phone">{phoneLabel}</label>}
-                    <input
-                      type="text"
-                      id="phone"
-                      value={phone}
-                      name="phone"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
-                  </div>
-                  <div className="submClass">
-                    <button
-                      className="regButton"
-                      id="regButton"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        nextStep(1, 2);
-                      }}
-                    >
-                      NEXT
-                    </button>
-                  </div>
+              <div className="form">
+                <div className="heading">
+                  <hr />
+                  <div className="diamond"></div>
+                  <p>REGISTER</p>
+                  <div className="diamond"></div>
+                  <hr />
                 </div>
 
-                <div
-                  className="input-control control2 tab"
-                  id="step2"
-                  style={{ display: "none" }}
-                >
-                  <div className="field">
-                    {!city && <label className="input-label" htmlFor="city">
-                      {cityLabel}
-                    </label>}
-                    <input
-                      type="text"
-                      id="city"
-                      value={city}
-                      name="city"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
+                <form>
+                  <div className="input-control tab" id="step1">
+                    <div className="field">
+                      {!name && <label className="input-label" htmlFor="name">
+                        {nameLabel}
+                      </label>}
+                      <input
+                        type="text"
+                        id="name"
+                        value={name}
+                        name="name"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+
+                    <div className="field">
+                      <span htmlFor="DOB"> {dateLabel}</span>
+
+                      <input
+                        id="date" className="focus"
+                        type="date"
+                        value={date}
+                        onChange={handleInputChange}
+                        name="date"
+                        autoComplete="off"
+                        required=""
+                        endIc
+                      />
+                    </div>
+                    <div className="field">
+                      {!email && <label htmlFor="email"> {emailLabel}</label>}
+                      <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        name="email"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+
+                    <div className="field">
+                      {!phone && <label htmlFor="phone">{phoneLabel}</label>}
+                      <input
+                        type="text"
+                        id="phone"
+                        value={phone}
+                        name="phone"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+                    <div className="submClass">
+                      <button
+                        className="regButton"
+                        id="regButton"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          nextStep(1, 2);
+                        }}
+                      >
+                        NEXT
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="field">
-                    {!college && <label htmlFor="college"> {collegeLabel}</label>}
-                    <input
-                      type="text"
-                      id="college"
-                      value={college}
-                      name="college"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
-                  </div>
-                  <div className="field">
-                    {!password && <label htmlFor="password"> {passwordLabel}</label>}
-                    <input
-                      type="password"
-                      id="password"
-                      value={password}
-                      name="password"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
-                  </div>
+                  <div
+                    className="input-control control2 tab"
+                    id="step2"
+                    style={{ display: "none" }}
+                  >
+                    <div className="field">
+                      {!city && <label className="input-label" htmlFor="city">
+                        {cityLabel}
+                      </label>}
+                      <input
+                        type="text"
+                        id="city"
+                        value={city}
+                        name="city"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
 
-                  <div className="field">
-                    {!confirmPassword && <label htmlFor="confirmPassword">
-                      {confirmPasswordLabel}
-                    </label>}
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      value={confirmPassword}
-                      name="confirmPassword"
-                      onChange={handleInputChange}
-                      className="focus"
-                      autoComplete="off"
-                      required=""
-                    />
+                    <div className="field">
+                      {!college && <label htmlFor="college"> {collegeLabel}</label>}
+                      <input
+                        type="text"
+                        id="college"
+                        value={college}
+                        name="college"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+                    <div className="field">
+                      {!password && <label htmlFor="password"> {passwordLabel}</label>}
+                      <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        name="password"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+
+                    <div className="field">
+                      {!confirmPassword && <label htmlFor="confirmPassword">
+                        {confirmPasswordLabel}
+                      </label>}
+                      <input
+                        type="password"
+                        id="confirmPassword"
+                        value={confirmPassword}
+                        name="confirmPassword"
+                        onChange={handleInputChange}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                    </div>
+                    <div className="submClass1 ">
+                      <button
+                        className="regButton"
+                        id="regButton"
+                        onClick={(event) => {
+                          event.preventDefault();
+                          prevStep(2, 1);
+                        }}
+                      >
+                        PREVIOUS
+                      </button>
+                      <button
+                        className="regButton"
+                        id="regButton"
+                        onClick={handleSubmit}
+                      >
+                        <p>SUBMIT</p>
+                      </button>
+                    </div>
                   </div>
-                  <div className="submClass1 ">
-                    <button
-                      className="regButton"
-                      id="regButton"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        prevStep(2, 1);
-                      }}
-                    >
-                      PREVIOUS
-                    </button>
-                    <button
-                      className="regButton"
-                      id="regButton"
-                      onClick={handleSubmit}
-                    >
-                      <p>SUBMIT</p>
-                    </button>
-                  </div>
+                </form>
+                <div className="p_text">
+                  <p>**Early registration discounts can be availed on </p>
+                  <p> the registrations done before 20th Dec 2023</p>
                 </div>
-              </form>
-              <div className="p_text">
-                <p>**Early registration discounts can be availed on </p>
-                <p> the registrations done before 20th Dec 2023</p>
               </div>
             </div>
+            <Footer />
           </div>
+          
         </div>
+        
       </div>
+      
+     
+
     </>
   );
 };
