@@ -99,6 +99,12 @@ body {
   opacity: 1;
 }
 
+.p_text {
+  margin-left: 37px;
+  color: #dc9999;
+}
+
+
 .custom-icon .ant-picker-icon svg {
   fill: white;
   /* Set the icon color to white */

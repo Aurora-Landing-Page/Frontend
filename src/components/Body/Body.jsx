@@ -858,6 +858,10 @@ const Body = () => {
                   </div>
                 </div>
               </form>
+              <div className="p_text">
+                <p>**Early registration discounts can be availed on </p>
+                <p> the registrations done before 20th Dec 2023</p>
+              </div>
             </div>
           </div>
         </div>
