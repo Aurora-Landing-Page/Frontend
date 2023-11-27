@@ -1290,7 +1290,7 @@ h1>.magic>.magic-text {
   font-size: clamp(1.25rem, 0.726rem + 1.1976vw, 1.675rem);   
  width:   100%;
  margin-left: 16vw;
-margin-top: 5vh;
+margin-top: 2vh;
 display: -webkit-box;
 justify-content: start;
 gap: 2%;
