@@ -868,7 +868,7 @@ const Body = () => {
                 </form>
                 <div className="p_text">
                   <p>**Early registration discounts can be availed on </p>
-                  <p> the registrations done before 20th Dec 2023</p>
+                  <p> the registrations done before 25th Dec 2023</p>
                 </div>
               </div>
             </div>
