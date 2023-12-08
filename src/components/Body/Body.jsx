@@ -32,6 +32,11 @@ const Body = () => {
   const [confirmPasswordLabel, setConfirmPasswordLabel] =
     useState("ConfirmPassword");
   const [passwordLabel, setPasswordLabel] = useState("Password");
+  let [inMove, setInmove] = useState(false);
+  const textCHangeHandler = (event)=>{
+    event.preventDefault();
+    setInmove(true);
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -577,12 +582,17 @@ const Body = () => {
           <div className="logo">
             <img src="../../../assets/logo.png" id="logo" />
           </div>
-          <div className="quote"> </div>
-          <a className="register" href="#regButton">
+         <div className="button_cont">
+         <a className="register" href="#regButton">
             REGISTER
           </a>
+          <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
+            setInmove(false);
+          }}  style={{width:inMove?"min(220px,29vw)":"min(200px,25vw)",padding:"-3vw"}}>
+            {inMove?"Campus Ambassador":"Become a CA"}
+          </a>
+         </div>
         </div>
-
         <div className="mainbody">
           <div className="background">
             <div className="img_grid">
