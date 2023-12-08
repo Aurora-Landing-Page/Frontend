@@ -77,20 +77,70 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 37px;
+  height: min(37px,3.5vh);
   color: black;
   text-decoration: none;
-  width: 115px;
+  width: min(115px,15vw);
   font-family: "myFirstFont";
   border-radius: 28px;
   border: none;
   box-shadow: 1px 1px 7px 2px rgb(236, 167, 5);
   background-color: black;
-  font-size: 1rem;
+  font-size: 1em;
   color: rgb(255, 255, 255);
   transition: 0.12s all linear;
   margin-right: 10px;
 }
+  
+.button_cont{
+  display: flex;
+  justify-content: space-evenly;
+  width: fit-content;
+  align-items: center;
+}
+
+.register {
+  margin: 10px;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.15s all linear;
+
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.register:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.register:active {
+  transform: scale(0.95);
+}
+.ca{
+  padding-right: 0px;
+  padding-left: 0;
+  margin: 0;
+}
+
+
+
+
+
+
 
 .cal_icon {
   margin-top: -8%;
@@ -113,18 +163,8 @@ body {
 }
 
 
-.register:hover {
-  background-image: linear-gradient(black, black);
-  color: rgb(238, 210, 25);
-  border: none;
-  box-shadow: 0px 0px 10px 1px rgb(201, 185, 8);
-  scale: 1.01;
-}
-
-.register:active {
-  filter: brightness(1.2);
-  font-size: 1.46rem;
-  transform: scale(0.95);
+a:hover::after{
+  width: 0%;
 }
 
 .mainbody {
@@ -1278,14 +1318,8 @@ h1>.magic>.magic-text {
   gap: 1.5%;
   width: 80%;
 }
-.parent_link a{
- 
-  color: white;
-  transition: 0.12s color linear;
-}
-.parent_link a:hover{
-  color: orangered;
-}
+
+
 .footer{
   font-size: clamp(1.25rem, 0.726rem + 1.1976vw, 1.675rem);   
  width:   100%;
