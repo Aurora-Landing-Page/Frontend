@@ -588,7 +588,7 @@ const Body = () => {
           </a>
           <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
             setInmove(false);
-          }}  style={{width:inMove?"220px":"180px",fontSize:inMove?"0.80rem":"0.95rem",padding:"-3vw"}}>
+          }}  style={{width:inMove?"min(220px,29vw)":"min(200px,25vw)",padding:"-3vw"}}>
             {inMove?"Campus Ambassador":"Become a CA"}
           </a>
          </div>

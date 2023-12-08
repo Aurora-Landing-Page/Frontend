@@ -101,7 +101,7 @@ body {
 
 .register {
   margin: 10px;
-  padding: 15px 30px;
+  /* padding: 15px 30px; */
   text-align: center;
   text-transform: uppercase;
   transition: 0.15s all linear;
@@ -109,7 +109,7 @@ body {
   background-size: 200% auto;
   color: white;
   border-radius: 10px;
-  display: block;
+  /* display: block; */
   border: 0px;
   font-weight: 700;
   box-shadow: 0px 0px 14px -7px #f09819;
@@ -1194,6 +1194,22 @@ h1>.magic>.magic-text {
     
       flex-direction: column;
       
+    }
+    .button_cont{
+      width: 50vw;
+    }
+    .register{
+      width: 22vw;
+      font-size: 0.7rem;
+      margin: 0;
+      margin-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ca{
+      
+      font-size: 0.6rem;
     }
     .formContainer {
       margin-top: -170px;
