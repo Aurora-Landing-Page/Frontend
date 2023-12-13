@@ -608,11 +608,11 @@ const Body = () => {
          <a className="register" href="#regButton">
             REGISTER
           </a>
-          <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
+          {/* <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
             setInmove(false);
           }}  style={{width:inMove?"min(220px,29vw)":"min(200px,25vw)",padding:"-3vw"}}>
             {inMove?"Campus Ambassador":"Become a CA"}
-          </a>
+          </a> */}
          </div>
         </div>
         <div className="mainbody">
