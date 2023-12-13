@@ -1334,7 +1334,10 @@ h1>.magic>.magic-text {
   gap: 1.5%;
   width: 80%;
 }
-
+.white_icon{
+  color:white;
+  text-decoration: solid;
+}
 
 .footer{
   font-size: clamp(1.25rem, 0.726rem + 1.1976vw, 1.675rem);   

@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -8,20 +8,20 @@ const Footer = () => {
       <p className='footer_heading'>Follow us on:</p>
 
       <div className='parent_link'>
-        <a href={"https://www.facebook.com/auroraiiitm/"}>
-            <FaFacebook/>
+        <a href={"https://www.facebook.com/auroraiiitm/" }>
+            <FaFacebook className='white_icon'/>
         </a>
 
         <a href={"https://instagram.com/aurora_iiitm/"}>
-            <FaInstagram/>
+            <FaInstagram className='white_icon'/>
         </a>
 
         <a href={"https://twitter.com/IiitmAurora"}>
-            <FaTwitter/>
+            <FaXTwitter className='white_icon'/>
         </a>
 
         <a href={"https://www.youtube.com/@AuroraIIITGwaliorFest"}>
-            <FaYoutube/>
+            <FaYoutube className='white_icon'/>
         </a>
       </div>
     </div>
