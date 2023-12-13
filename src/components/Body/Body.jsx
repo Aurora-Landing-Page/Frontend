@@ -90,39 +90,61 @@ const Body = () => {
     e.preventDefault();
 
     setVisibleAlert(true);
-
-    if (
-      (!name ||
-        !email ||
-        !phone ||
-        !date ||
-        !city ||
-        !college ||
-        !password ||
-        !confirmPassword)
-      || phone.length != 10
-      || (password.length < 4 || confirmPassword.length < 4)
-      || (password.length > 19 || confirmPassword.length > 19)
-    ) {
-
-      toast.error("Please corectly fill the fields!");
-
+    if(!name){
+      toast.error("Enter your name !");
       return;
     }
-
+    if(!email ){
+      toast.error("Enter your email !");
+      return;
+    }
     const regexExp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/gi;
 
     if (!regexExp.test(email)) {
       toast.error("Please enter a valid email address!");
-
       return;
-
     }
 
-    if (password != confirmPassword) {
-      toast.error("Passwords does not match");
+    if(!phone){
+      toast.error("Enter your phone number !");
       return;
+    }
+    if(phone.at(0)==String(0)){
+      toast.error("Phone number should not start with 0 !");
+      return;
+    }
+    if(phone.length != 10){
+      toast.error("Phone number should be of 10 digits !");
+      return;
+    }
 
+    if(!date){
+      toast.error("Enter your date of birth !");
+      return;
+    }
+    if(!city){
+      toast.error("Enter your city !");
+      return;
+    }
+    if(!college){
+      toast.error("Enter your college !");
+      return;
+    }
+    if(!password){
+      toast.error("Enter your password !");
+      return;
+    }
+    if(password.length<4 || password.length>19){
+      toast.error("Password should be between 4 to 19 characters !");
+      return;
+    }
+    if(!confirmPassword){
+      toast.error("Confirm your password !");
+      return;
+    }
+    if(confirmPassword <4 || confirmPassword.length>19 || confirmPassword != password){
+      toast.error("Password does not match !");
+      return;
     }
 
     const formData = {
