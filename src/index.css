@@ -77,20 +77,70 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 37px;
+  height: min(37px,3.5vh);
   color: black;
   text-decoration: none;
-  width: 115px;
+  width: min(115px,15vw);
   font-family: "myFirstFont";
   border-radius: 28px;
   border: none;
   box-shadow: 1px 1px 7px 2px rgb(236, 167, 5);
   background-color: black;
-  font-size: 1rem;
+  font-size: 1em;
   color: rgb(255, 255, 255);
   transition: 0.12s all linear;
   margin-right: 10px;
 }
+  
+.button_cont{
+  display: flex;
+  justify-content: space-evenly;
+  width: fit-content;
+  align-items: center;
+}
+
+.register {
+  margin: 10px;
+  /* padding: 15px 30px; */
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.15s all linear;
+
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  /* display: block; */
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.register:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.register:active {
+  transform: scale(0.95);
+}
+.ca{
+  padding-right: 0px;
+  padding-left: 0;
+  margin: 0;
+}
+
+
+
+
+
+
 
 .cal_icon {
   margin-top: -8%;
@@ -100,8 +150,10 @@ body {
 }
 
 .p_text {
-  margin-left: 37px;
+  /* margin-left: 37px; */
   color: #dc9999;
+  text-align: center;
+  padding-top: 14px;
 }
 
 
@@ -111,18 +163,8 @@ body {
 }
 
 
-.register:hover {
-  background-image: linear-gradient(black, black);
-  color: rgb(238, 210, 25);
-  border: none;
-  box-shadow: 0px 0px 10px 1px rgb(201, 185, 8);
-  scale: 1.01;
-}
-
-.register:active {
-  filter: brightness(1.2);
-  font-size: 1.46rem;
-  transform: scale(0.95);
+a:hover::after{
+  width: 0%;
 }
 
 .mainbody {
@@ -1148,7 +1190,27 @@ h1>.magic>.magic-text {
 
 @media screen and (width<=700px) {
   @media (max-width: 700px) {
-
+    .form_main{
+    
+      flex-direction: column;
+      
+    }
+    .button_cont{
+      width: 50vw;
+    }
+    .register{
+      width: 22vw;
+      font-size: 0.7rem;
+      margin: 0;
+      margin-right: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ca{
+      
+      font-size: 0.6rem;
+    }
     .formContainer {
       margin-top: -170px;
     }
@@ -1262,7 +1324,7 @@ h1>.magic>.magic-text {
 .footer_heading{
   color: rgb(131, 131, 131);
 
-  font-size: 1.9em;
+  /* font-size: 1.9em; */
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .parent_link{
@@ -1272,19 +1334,17 @@ h1>.magic>.magic-text {
   gap: 1.5%;
   width: 80%;
 }
-.parent_link a{
-  font-size: 1.8rem;
-  color: white;
-  transition: 0.12s color linear;
+.white_icon{
+  color:white;
+  text-decoration: solid;
 }
-.parent_link a:hover{
-  color: orangered;
-}
+
 .footer{
- width: 100vw;
+  font-size: clamp(1.25rem, 0.726rem + 1.1976vw, 1.675rem);   
+ width:   100%;
  margin-left: 16vw;
-margin-top: 5vh;
-display: flex;
+margin-top: 2vh;
+display: -webkit-box;
 justify-content: start;
 gap: 2%;
 padding-bottom: 10rem;
