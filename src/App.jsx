@@ -1,12 +1,22 @@
-import CustomCursor from "./components/Cursor/Cursor.jsx";
 import Body from "./components/Body/Body.jsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Dash from "./components/CaDashboard/Dash.jsx";
+import MainDash from "./components/CaDashboard/MainDash/MainDash.jsx";
+import Profile from "./components/CaDashboard/Profile/Profile.jsx";
+import CaLogin from "./components/caLogin/CaLogin.jsx";
 
 function App() {
   return (
-    <>
-      <Body />
-      {/* <CustomCursor /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<Body />} />
+        {/* <CustomCursor /> */}
+        <Route path="/ca-dash" element={<Dash />}>
+          <Route index element={<MainDash />} />
+          <Route path="profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
