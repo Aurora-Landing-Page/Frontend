@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader.jsx";
 import toast, { Toaster } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 import Footer from "../Footer/Footer.jsx";
+import data from "../../data.js";
 
 const Body = () => {
   const [field, setField] = useState("");
@@ -806,6 +807,7 @@ const Body = () => {
                     <div className="field">
                       {!college && <label htmlFor="college"> {collegeLabel}</label>}
                       <input
+                        list="collegeList"
                         type="text"
                         id="college"
                         value={college}
@@ -815,6 +817,15 @@ const Body = () => {
                         autoComplete="off"
                         required=""
                       />
+                      <datalist id="collegeList" className="dropDown">
+                        {
+                          data.map((item,index)=>{
+                            return(
+                              <option key={index}>{item.name}</option>
+                            )
+                          })
+                        }
+                      </datalist>
                     </div>
                     <div className="field">
                       {!password && <label htmlFor="password"> {passwordLabel}</label>}
@@ -828,6 +839,7 @@ const Body = () => {
                         autoComplete="off"
                         required=""
                       />
+                      
                     </div>
 
                     <div className="field">
