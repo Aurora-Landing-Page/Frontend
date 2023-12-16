@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+* {
+  box-sizing: border-box;
+  font-family: 'Titillium Web', sans-serif;
+}
+:root {
+  --offset: 30px;
+}
+
+@font-face {
+  font-family: myFont;
+  src: url(font.ttf);
+}
+body {
+  margin: 0;
+  background-color: #000000;
+  color: white;
+  overflow-x: hidden;
+  word-spacing: 10px;
+  letter-spacing: 2px;
+}
+.heading {
+    position: relative;
+    font-family: myFont;
+    font-size: 90px;
+    text-align: center;    width: 80%;
+    left: 6%;
+    margin-top: 0;
+    text-shadow: 10px 2px 20px rgb(90, 114, 114);
+    padding-top: 50px;
+    padding-bottom: 60px;
+    margin-bottom: 0;
+}
+.ca-landing-nav {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000;
+  overflow: hidden;
+  padding: 30px;
+  width: 100%;
+  top: 10px;
+}
+.ca-landing-nav .loginbutt {
+  font-size: larger;
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  border: 1px solid white;
+  border-radius: 30px;
+  position: relative;
+  z-index: 99999;
+}
+.ca-landing-nav .loginbutt:hover {
+  background-color: #ddd;
+  color: black;
+  font-size: large;
+  box-shadow: 0px 2px 20px 10px rgba(237, 237, 237, 0.663);
+}
+.ca-landing-nav .loginbutt:active {
+  transform: scale(0.9);
+  transition: ease-in-out 0.5s;
+}
+.question .icon {
+  cursor: pointer;
+  font-size: 30px;
+  position: relative;
+  top: 20px;
+}
+.question .icon:hover {
+  color: gray;
+}
+.question .icon:active {
+  transform: scale(0.9);
+}
+.questions {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  background: url(images/6.jpeg);
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.queSec {
+  padding-bottom: 30px;
+}
+.que {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  top: -16px;
+  font-size: 10px;
+}
+.que p {
+  font-size: 3rem;
+  text-align: center;
+  font-family: myFont;
+  margin-bottom: 15px;
+}
+.question {
+  font-size: 2rem;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  padding-left: 40px;
+  padding:  20px 40px 20px 40px;
+  vertical-align: middle;
+  width: 80%;
+  box-sizing: border-box;
+  border: 1px solid white;
+  backdrop-filter: blur(100px);
+}
+.answer {
+  display: none;
+  line-height: 1.5;
+  letter-spacing: 0.7px;
+}
+.question span {
+  padding: 20px;
+  position: relative;
+}
+.answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.contentWrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 30px;
+  margin-bottom: 50px;
+  background: url(images/6.jpeg);
+  background-position: cover;
+  box-shadow: 10px 10px 80px 20px rgb(21, 96, 153);
+}
+.contentWrap .right{
+  position: relative;
+  top: -25px;
+  width: 50%;
+  text-align: center;
+  height: 400px;
+  margin: 30px;
+  box-shadow: 10px 40px 40px 40px rgba(237, 237, 237, 0.663);
+}
+.right img {
+  position: relative;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 30px;
+  object-fit: contain;
+}
+.contentWrap .right img:hover {
+  box-shadow:  20px 10px 100px rgba(255, 255, 255, 0.663);
+
+}
+.left {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.5rem;
+  margin-left: 50px;
+  border: 1px solid white;
+  backdrop-filter: blur(100px);
+  color: #fffbfb;
+}
+.butt {
+  display: flex;
+  gap: 80px;
+}
+button {
+  padding: 10px 20px;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+button:hover {
+  background-color: rgb(42, 151, 235);
+  color: black;
+  box-shadow: 0px 10px 30px 10px rgba(237, 237, 237, 0.663);
+}
+button:active {
+  background-color: rgb(42, 151, 235);
+  color: rgb(27, 26, 26);
+  box-shadow: 0px 10px 30px 10px rgba(237, 237, 237, 0.663);
+  transform: scale(0.9);
+}
+.logo {
+  position: relative;
+  width: 150%;
+  height: auto;
+  object-fit: cover;
+  z-index: 9999;
+}
+.logoa {
+  width: 50px;
+  height: 50px;
+}
+.strongCon{
+   border-bottom: 1px solid white;
+}
+.answer ul li p {
+    margin-top: 7px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 100;
+}
+.last p{
+  text-align: start;
+  padding-left: 0;
+}

@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
+ 
+}
+      body {
+        /* font-family: Arial, sans-serif; */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url(./bg.jpeg);
+        background-position:  top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #fff;
+      }
+ a{
+  color: #3ebaf8;
+ }
+      .form-container {
+        padding: 30px;
+        background-color: #fff;
+
+        backdrop-filter: blur(25px) saturate(200%);
+        -webkit-backdrop-filter: blur(25px) saturate(200%);
+        background-color: rgba(17, 25, 40, 0.61);
+        /* box-shadow: 5px 5px 58px #781e2c, -5px -5px 58px #7a1e2c; */
+        border: 1px solid rgba(255, 255, 255, 0.125);
+        border-radius: 36px;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        gap: 23px;
+      }
+      imput:placeholder-shown{
+        color: #000000;
+      }
+      input,
+      select,
+      button {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #EFDA9E;
+        color: #373737;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #9BEEE5;
+      }
+
+      .step {
+        display: none;
+      }
+
+      .step.active {
+        display: block;
+      }
+      .password-container {
+        position: relative;
+        width: 100%;
+      }
+
+      .password-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 40px; /* Adjust as needed */
+      }
+
+      .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: black;
+      }
+      .forgotpass {
+        text-align: end;
+        font-size: small;
+      }
+      #signin {
+        padding: 10px;
+      }
+      .register {
+        padding: 39px;
+      }
+      .dont {
+        text-align: center;
+      }
+      .form {
+        width: 100%;
+        max-width: 400px; /* Adjust as needed */
+        margin: 0 auto; /* Center the form */
+      }
+      @media (max-width: 600px) {
+        .form {
+          width: 80%; /* Adjust the form width for smaller screens */
+          max-width: 350px; /* Limit the maximum width for better readability */
+          margin: 0 auto; /* Center the form */
+        }
+      }
+
+      /* Media query for screens smaller than 400px */
+      @media (max-width: 400px) {
+        .form {
+          width: 90%; /* Further adjust the form width for even smaller screens */
+          max-width: 280px; /* Limit the maximum width */
+        }
+      }
