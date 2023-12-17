@@ -16,6 +16,7 @@ const Body = () => {
 
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
   const [college, setCollege] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,8 +29,8 @@ const Body = () => {
   const [firstNameLabel, setFirstNameLabel] = useState("First Name");
   const [lastNameLabel, setLastNameLabel] = useState("Last Name");
   const [phoneLabel, setPhoneLabel] = useState("Phone");
-  const [cityLabel, setCityLabel] = useState("City");
-  const [collegeLabel, setCollegeLabel] = useState("College");
+  const [cityLabel, setCityLabel] = useState("Institute City");
+  const [collegeLabel, setCollegeLabel] = useState("College (Full Name)");
   const [confirmPasswordLabel, setConfirmPasswordLabel] =
     useState("ConfirmPassword");
   const [passwordLabel, setPasswordLabel] = useState("Password");
@@ -39,8 +40,19 @@ const Body = () => {
     setInmove(true);
   }
 
+  const handleInputBlur = () => {
+    const isExistingValue = data.some((item) => item.name === college);
+
+    // If it doesn't exist, set the value to "Other"
+    if (!isExistingValue) {
+      setCollege('Others');
+    }
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log("name: ",name);
+    console.log("value: ",value);
 
     if (name === "name") {
       setName(e.target.value);
@@ -61,6 +73,8 @@ const Body = () => {
 
     } else if (name === "phone") {
       setPhone(value);
+    } else if(name === "gender"){
+      setGender(value);
     } else if (name === "city") {
       setCity(value);
     } else if (name === "college") {
@@ -123,14 +137,19 @@ const Body = () => {
       toast.error("Enter your date of birth !");
       return;
     }
-    if(!city){
-      toast.error("Enter your city !");
+    if(!gender){
+      toast.error("Enter your Gender !");
       return;
     }
     if(!college){
       toast.error("Enter your college !");
       return;
     }
+    if(!city){
+      toast.error("Enter your city !");
+      return;
+    }
+    
     if(!password){
       toast.error("Enter your password !");
       return;
@@ -153,7 +172,7 @@ const Body = () => {
       email: email,
       phone: phone,
       dob: date,
-      gender: "male",
+      gender: gender,
       city: city,
       college: college,
       password: password,
@@ -163,6 +182,7 @@ const Body = () => {
     try {
       setName("");
       setDate("");
+      setGender("");
       setEmail("");
       setPhone("");
       setCity("");
@@ -801,6 +821,7 @@ const Body = () => {
                         required=""
                       />
                     </div>
+
                     <div className="submClass">
                       <button
                         className="regButton"
@@ -820,6 +841,50 @@ const Body = () => {
                     id="step2"
                     style={{ display: "none" }}
                   >
+
+                                        
+      <div className="field" >
+        {/* {!gender && <label htmlFor="gender">Gender</label>} */}
+        <select
+        style={{height:"55px"}}
+          id="gender"
+          name="gender"
+          value={gender}
+          onChange={handleInputChange}
+          className="focus"
+          required=""
+        >
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+
+                    <div className="field">
+                      {!college && <label htmlFor="college"> {collegeLabel}</label>}
+                      <input
+                        list="collegeList"
+                        type="text"
+                        id="college"
+                        value={college}
+                        name="college"
+                        onChange={handleInputChange}
+                        onBlur={handleInputBlur}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                      />
+                      <datalist id="collegeList" className="dropDown">
+                        {
+                          data.map((item,index)=>{
+                            return(
+                              <option key={index}>{item.name}</option>
+                            )
+                          })
+                        }
+                      </datalist>
+                    </div>
+
                     <div className="field">
                       {!city && <label className="input-label" htmlFor="city">
                         {cityLabel}
@@ -834,30 +899,6 @@ const Body = () => {
                         autoComplete="off"
                         required=""
                       />
-                    </div>
-
-                    <div className="field">
-                      {!college && <label htmlFor="college"> {collegeLabel}</label>}
-                      <input
-                        list="collegeList"
-                        type="text"
-                        id="college"
-                        value={college}
-                        name="college"
-                        onChange={handleInputChange}
-                        className="focus"
-                        autoComplete="off"
-                        required=""
-                      />
-                      <datalist id="collegeList" className="dropDown">
-                        {
-                          data.map((item,index)=>{
-                            return(
-                              <option key={index}>{item.name}</option>
-                            )
-                          })
-                        }
-                      </datalist>
                     </div>
                     <div className="field">
                       {!password && <label htmlFor="password"> {passwordLabel}</label>}
