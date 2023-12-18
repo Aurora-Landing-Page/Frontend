@@ -30,9 +30,9 @@ const Body = () => {
   const [lastNameLabel, setLastNameLabel] = useState("Last Name");
   const [phoneLabel, setPhoneLabel] = useState("Phone");
   const [cityLabel, setCityLabel] = useState("Institute City");
-  const [collegeLabel, setCollegeLabel] = useState("College (Full Name)");
+  const [collegeLabel, setCollegeLabel] = useState("Institute (Full Name)");
   const [confirmPasswordLabel, setConfirmPasswordLabel] =
-    useState("ConfirmPassword");
+    useState("Confirm Password");
   const [passwordLabel, setPasswordLabel] = useState("Password");
   let [inMove, setInmove] = useState(false);
   const textCHangeHandler = (event) => {
@@ -853,6 +853,7 @@ const Body = () => {
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="others">Others</option>
                       </select>
                     </div>
 
@@ -870,7 +871,7 @@ const Body = () => {
                         autoComplete="off"
                         required=""
                       />
-                      <datalist id="collegeList" className="dropDown">
+                      <datalist id="collegeList" className="dropDown" >
                         {
                           data.map((item, index) => {
                             return (
