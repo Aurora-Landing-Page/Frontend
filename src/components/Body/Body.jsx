@@ -35,7 +35,7 @@ const Body = () => {
     useState("ConfirmPassword");
   const [passwordLabel, setPasswordLabel] = useState("Password");
   let [inMove, setInmove] = useState(false);
-  const textCHangeHandler = (event)=>{
+  const textCHangeHandler = (event) => {
     event.preventDefault();
     setInmove(true);
   }
@@ -51,8 +51,6 @@ const Body = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log("name: ",name);
-    console.log("value: ",value);
 
     if (name === "name") {
       setName(e.target.value);
@@ -62,7 +60,7 @@ const Body = () => {
       if (year < 1985 || year > 2010) {
         setDateLabel("Invalid DOB");
         console.log("Invalid DOB");
-        
+
       } else {
         setDateLabel("DOB");
         setDate(value);
@@ -73,7 +71,7 @@ const Body = () => {
 
     } else if (name === "phone") {
       setPhone(value);
-    } else if(name === "gender"){
+    } else if (name === "gender") {
       setGender(value);
     } else if (name === "city") {
       setCity(value);
@@ -105,11 +103,11 @@ const Body = () => {
     e.preventDefault();
 
     setVisibleAlert(true);
-    if(!name){
+    if (!name) {
       toast.error("Enter your name !");
       return;
     }
-    if(!email ){
+    if (!email) {
       toast.error("Enter your email !");
       return;
     }
@@ -120,49 +118,49 @@ const Body = () => {
       return;
     }
 
-    if(!phone){
+    if (!phone) {
       toast.error("Enter your phone number !");
       return;
     }
-    if(phone.at(0)==String(0)){
+    if (phone.at(0) == String(0)) {
       toast.error("Phone number should not start with 0 !");
       return;
     }
-    if(phone.length != 10){
+    if (phone.length != 10) {
       toast.error("Phone number should be of 10 digits !");
       return;
     }
 
-    if(!date){
+    if (!date) {
       toast.error("Enter your date of birth !");
       return;
     }
-    if(!gender){
+    if (!gender) {
       toast.error("Enter your Gender !");
       return;
     }
-    if(!college){
+    if (!college) {
       toast.error("Enter your college !");
       return;
     }
-    if(!city){
+    if (!city) {
       toast.error("Enter your city !");
       return;
     }
-    
-    if(!password){
+
+    if (!password) {
       toast.error("Enter your password !");
       return;
     }
-    if(password.length<4 || password.length>19){
+    if (password.length < 4 || password.length > 19) {
       toast.error("Password should be between 4 to 19 characters !");
       return;
     }
-    if(!confirmPassword){
+    if (!confirmPassword) {
       toast.error("Confirm your password !");
       return;
     }
-    if(confirmPassword <4 || confirmPassword.length>19 || confirmPassword != password){
+    if (confirmPassword < 4 || confirmPassword.length > 19 || confirmPassword != password) {
       toast.error("Password does not match !");
       return;
     }
@@ -217,13 +215,13 @@ const Body = () => {
 
     }
 
-    try{
+    try {
       const response = await axios.post(
         // "https://aurora-nokc.onrender.com/email",
         "http://localhost:5000/mail",
         {
           name: name,
-          email:email
+          email: email
         },
         {
           headers: {
@@ -231,12 +229,10 @@ const Body = () => {
           },
         }
       );
-      if(response.status == 200)
-      {
+      if (response.status == 200) {
         toast.success("Please check your email!");
       }
-    }catch(e)
-    {
+    } catch (e) {
       console.log(e)
     }
     // emailjs
@@ -625,16 +621,16 @@ const Body = () => {
           <div className="logo">
             <img src="../../../assets/logo.png" id="logo" />
           </div>
-         <div className="button_cont">
-         <a className="register" href="#regButton">
-            REGISTER
-          </a>
-          {/* <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
+          <div className="button_cont">
+            <a className="register" href="#regButton">
+              REGISTER
+            </a>
+            {/* <a className="register ca" href="https://docs.google.com/forms/d/e/1FAIpQLSetNH21DYeFpSkEpqgdKcnhivVoKMJOnQ2CBIXWPShKsLNVQw/viewform" onMouseEnter={textCHangeHandler} onMouseLeave={()=>{
             setInmove(false);
           }}  style={{width:inMove?"min(220px,29vw)":"min(200px,25vw)",padding:"-3vw"}}>
             {inMove?"Campus Ambassador":"Become a CA"}
           </a> */}
-         </div>
+          </div>
         </div>
         <div className="mainbody">
           <div className="background">
@@ -842,23 +838,23 @@ const Body = () => {
                     style={{ display: "none" }}
                   >
 
-                                        
-      <div className="field" >
-        {/* {!gender && <label htmlFor="gender">Gender</label>} */}
-        <select
-        style={{height:"55px"}}
-          id="gender"
-          name="gender"
-          value={gender}
-          onChange={handleInputChange}
-          className="focus"
-          required=""
-        >
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
+
+                    <div className="field" >
+                      {/* {!gender && <label htmlFor="gender">Gender</label>} */}
+                      <select
+                        style={{ height: "55px" }}
+                        id="gender"
+                        name="gender"
+                        value={gender}
+                        onChange={handleInputChange}
+                        className="focus"
+                        required=""
+                      >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
 
                     <div className="field">
                       {!college && <label htmlFor="college"> {collegeLabel}</label>}
@@ -869,15 +865,15 @@ const Body = () => {
                         value={college}
                         name="college"
                         onChange={handleInputChange}
-                        onBlur={handleInputBlur}
+                        // onBlur={handleInputBlur}
                         className="focus"
                         autoComplete="off"
                         required=""
                       />
                       <datalist id="collegeList" className="dropDown">
                         {
-                          data.map((item,index)=>{
-                            return(
+                          data.map((item, index) => {
+                            return (
                               <option key={index}>{item.name}</option>
                             )
                           })
@@ -912,7 +908,7 @@ const Body = () => {
                         autoComplete="off"
                         required=""
                       />
-                      
+
                     </div>
 
                     <div className="field">
@@ -959,12 +955,12 @@ const Body = () => {
             </div>
             <Footer />
           </div>
-          
+
         </div>
-        
+
       </div>
-      
-     
+
+
 
     </>
   );
