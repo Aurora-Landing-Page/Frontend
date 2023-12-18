@@ -42,6 +42,42 @@ body {
   z-index: 0;
 }
 
+.react-datalist-input__textbox {
+  font-size: large;
+    padding: 18px;
+    width: clamp(20rem, 15.8084rem + 9.5808vw, 25rem);
+    height: 54px;
+    /* border: 1px solid rgb(195, 193, 190); */
+    border-radius: 5px;
+    margin-top: -19px;
+    background-color: #161922;
+    color: white;
+    margin-left: -19px;
+}
+
+.labell {
+  color: white;
+  z-index: 4;
+  margin-top: 5px;
+}
+
+.react-datalist-input__listbox {
+  width: auto;
+  position: absolute;
+  margin: 2px 0 0 0;
+  padding: 0;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  list-style-type: none;
+  box-shadow: var(--shadow);
+  z-index: 10;
+  margin-left: -19px;
+}
+
 .nav {
   height: 70px;
   padding: 10px;

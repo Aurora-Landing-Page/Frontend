@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 import emailjs from "@emailjs/browser";
 import Footer from "../Footer/Footer.jsx";
 import data from "../../data.js";
+import DatalistInput from "react-datalist-input";
+import 'react-datalist-input/dist/styles.css';
 
 const Body = () => {
   const [field, setField] = useState("");
@@ -858,8 +860,8 @@ const Body = () => {
                     </div>
 
                     <div className="field">
-                      {!college && <label htmlFor="college"> {collegeLabel}</label>}
-                      <input
+                      {!college && <label className="labell" htmlFor="college"> {collegeLabel}</label>}
+                      {/* <input
                         list="collegeList"
                         type="text"
                         id="college"
@@ -879,7 +881,23 @@ const Body = () => {
                             )
                           })
                         }
-                      </datalist>
+                      </datalist> */}
+                      <DatalistInput
+                        type="text"
+                        value={college}
+                        name="college"
+                        setValue={setCollege}
+                        className="focus"
+                        autoComplete="off"
+                        required=""
+                        items={
+                          data.map((item, index) => {
+                            return (
+                               {id: index, value: item.value}
+                            )
+                          })
+                        }
+                      />
                     </div>
 
                     <div className="field">
