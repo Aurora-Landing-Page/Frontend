@@ -264,6 +264,68 @@ const Body = () => {
   };
 
   useEffect(() => {
+    var input = document.getElementById("college");
+    input.onfocus = function () {
+      collegeList.style.display = 'block';
+      input.style.borderRadius = "5px 5px 0 0";
+    };
+    for (let option of collegeList.options) {
+      option.onclick = function () {
+        input.value = option.value;
+        setCollege(option.value);
+        collegeList.style.display = 'none';
+        input.style.borderRadius = "5px";
+      }
+    };
+
+    input.oninput = function () {
+      var text = input.value.toUpperCase();
+      for (let option of collegeList.options) {
+        if (option.value.toUpperCase().indexOf(text) > -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      };
+    }
+
+    var currentFocus = -1;
+    input.onkeydown = function (e) {
+      if (e.keyCode == 40) {
+        currentFocus++
+        addActive(collegeList.options);
+      }
+      else if (e.keyCode == 38) {
+        currentFocus--
+        addActive(collegeList.options);
+      }
+      else if (e.keyCode == 13) {
+        e.preventDefault();
+        if (currentFocus > -1) {
+          if (collegeList.options)
+          collegeList.options[currentFocus].click();
+        }
+      }
+    }
+
+    function addActive(x) {
+      if (!x) return false;
+      removeActive(x);
+      if (currentFocus >= x.length) currentFocus = 0;
+      if (currentFocus < 0)
+        currentFocus = (x.length - 1);
+      x[currentFocus].classList.add("active");
+    }
+    function removeActive(x) {
+      for (var i = 0; i < x.length; i++) {
+        x[i].classList.remove("active");
+      }
+    }
+
+   
+  }, []);
+
+  useEffect(() => {
     var background = document.querySelector(".background");
     var party_image = document.querySelector(".party_image");
     var text = document.querySelector(".text");
@@ -861,8 +923,9 @@ const Body = () => {
 
                     <div className="field">
                       {!college && <label className="labell" htmlFor="college"> {collegeLabel}</label>}
-                      {/* <input
-                        list="collegeList"
+                      <input
+                        // list="collegeList"
+                        list=""
                         type="text"
                         id="college"
                         value={college}
@@ -877,12 +940,12 @@ const Body = () => {
                         {
                           data.map((item, index) => {
                             return (
-                              <option key={index}>{item.name}</option>
+                              <option className="option" key={index}>{item.value}</option>
                             )
                           })
                         }
-                      </datalist> */}
-                      <DatalistInput
+                      </datalist>
+                      {/* <DatalistInput
                         type="text"
                         value={college}
                         name="college"
@@ -897,7 +960,7 @@ const Body = () => {
                             )
                           })
                         }
-                      />
+                      /> */}
                     </div>
 
                     <div className="field">
