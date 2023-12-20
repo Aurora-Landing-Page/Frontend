@@ -53,6 +53,7 @@ const Body = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(college);
 
     if (name === "name") {
       setName(e.target.value);
@@ -307,6 +308,12 @@ const Body = () => {
         }
       }
     }
+
+    input.addEventListener('blur', function() {
+      if (input.value === "") {
+        collegeList.style.display = 'none';
+      }
+    });
 
     function addActive(x) {
       if (!x) return false;
