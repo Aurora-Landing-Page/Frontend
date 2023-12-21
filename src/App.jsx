@@ -1,20 +1,19 @@
-import Body from "./components/Body/Body.jsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dash from "./components/CaDashboard/Dash.jsx";
-import MainDash from "./components/CaDashboard/MainDash/MainDash.jsx";
-import Profile from "./components/CaDashboard/Profile/Profile.jsx";
-import CaLogin from "./components/caLogin/CaLogin.jsx";
+// import Dash from "./components/CaDashboard/Dash.jsx";
+// import MainDash from "./components/CaDashboard/MainDash/MainDash.jsx";
+// import Profile from "./components/CaDashboard/Profile/Profile.jsx";
+import CaLanding from "./components/CaLanding/CaLanding.jsx";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" exact element={<Body />} />
-        {/* <CustomCursor /> */}
-        <Route path="/ca-dash" element={<Dash />}>
+        {/* <Route path="/ca-dash" element={<Dash />}>
           <Route index element={<MainDash />} />
           <Route path="profile" element={<Profile />} />
-        </Route>
+        </Route> */}
+        {/* landing page */}
+        <Route path="/" exact element={<CaLanding />} />
       </Routes>
     </BrowserRouter>
   );
