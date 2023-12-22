@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Maps&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Rubik+Maps&display=swap');
+@font-face {
+    font-family: myfont;
+    src: url(./font.ttf);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Advent Pro', sans-serif;
+}
+.login_body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    background-color: #00000046;
+    background: url(../../../images/bg4.jpg) no-repeat, black;
+    background-size: 210vh;
+    /* background-size: cover; */
+    background-position: 50% 10%;
+    color: white;
+    overflow: hidden;
+    user-select: none;
+    
+}
+
+.login_welcome {
+    font-family: "Russo One";
+    font-size: 100px;
+    position: relative;
+    left: -10%;
+    top: 20px;
+    color: rgb(231, 235, 241);
+    text-shadow: 1px 1px 10px #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.login_h3 {
+    font-family: "Acme";
+    font-size: 40px;
+    color: rgb(231, 235, 241);
+    position: relative;
+    left: -10%;
+    top: 2px;
+    text-shadow: 1px 1px 10px #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.login_box {
+    border: 0.1px solid rgba(32, 206, 206, 0.058);
+    padding: 5em;
+    background-color: rgba(155, 165, 165, 0.05);
+    backdrop-filter: blur(100px);
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: width 2s, height 2s, transform 2s;
+    box-shadow: 0px 40px 40px 10px rgba(237, 237, 237, 0.663);
+    position: relative;
+    top: 10px;
+    border: 1px solid white;
+    min-width: 35%;
+    padding-bottom: 30px;
+    height: 70vh;
+    right: 10%;
+}
+
+@media (max-width: 610px) {
+    .login_box {
+        right: 0;
+    }
+}
+h2 {
+    width: 150%;
+    font-family: myfont;
+    font-weight: 900;
+    cursor: none;
+    font-size: 4em;
+    position: relative;
+    top: -50px;
+    left: -23%;
+    text-align: center;
+    color: rgb(30, 17, 63);
+    text-shadow: 10px 10px 20px rgb(108, 102, 176);
+    letter-spacing: 5px;
+}
+.login_box h2 span img {
+    height: 80px;
+    position: relative;
+    top: 13px;
+    margin-right: 6px;
+}
+.login_user-box {
+    position: relative;
+    color: rgb(184, 176, 176);
+    letter-spacing: 2px;
+}
+.login_input {
+    position: relative;
+    left: -12%;
+    width: 125%;
+    height: 40px;
+    outline: none;
+    border: 1px solid rgb(249, 244, 244);
+    border-radius: 10px;
+    background-color: rgb(51, 63, 89);
+    font-size: 17px;
+    letter-spacing: 1.5px;
+    padding: 5px 15px;
+    margin-bottom: 17px;
+    top: -15px;
+}
+input {
+    color: white;
+    background-color: black;
+  }
+  ::-ms-reveal {
+    filter: invert(100%);
+}
+.login_box .login_user-box label {
+    position: relative;
+    left: -6%;
+    font-size: 1em;
+    color: white;
+    pointer-events: none;
+    transition: 0.5s ease-in-out;
+    top: -64px;
+}
+.login_box .login_user-box input:focus ~ label,
+.login_box .login_user-box input:valid ~ label {
+    top: -97px;
+    left: -8%;
+    color: white;
+    font: 15px;
+}
+.login_link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6px;
+}
+.login_link .login_a {
+    position: relative;
+    top: 10px;
+    font-size: 18px;
+}
+a {
+    text-decoration: none;
+    color: rgb(233, 226, 226);
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    word-spacing: 3px;
+}
+a:hover {
+    color: #c9c7c7;
+}
+a:active {
+    transform: scale(0.93);
+    transition-duration: 0.5s;
+}
+.login_button {
+    margin-bottom: 2em;
+    width: 100%;
+    text-align: center;
+    height: 3em;
+    margin-top: 0px;
+}
+.login_btn {
+    width: 100%;
+    height: 3em;
+    font-size: 1.3em;
+    font-weight: 900;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    letter-spacing: 2px;
+}
+.login_btn:hover {
+    background-color: rgb(209, 149, 224);
+    transition: 0.3s;
+    cursor: pointer;
+}
+.login_btn:active {
+    transition: 0.2s;
+    transform: scale(0.9);
+    background: rgb(185, 136, 197);
+    border: 2px solid purple;
+}
+.login_box .login_link hr {
+    width: 200px;
+    margin-top: 20px;
+}
+.login_box .login_link p {
+    font-weight: 500;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+.login_big-box {
+    position: fixed;
+    top: 0;
+}
+@media (max-width:1000px) {
+    .login_welcome {
+        font-size: 80px;
+    }
+    .login_h3 {
+        top: 10px;
+    }
+    .login_box {
+        top: 20px;
+    }
+}
+@media (max-width:750px) {
+    .login_welcome {
+        font-size: 75px;
+        left: -5%;
+    }
+    .login_h3 {
+        left: -7%;
+    }
+    .login_box {
+        left: -7%;
+    }
+}
+@media (max-width:625px) {
+    .login_welcome {
+        font-size: 67px;
+        left: -3%;
+    }
+    .login_h3 {
+        top: 14px;
+        font-size: 35px;
+        left: -1%;
+    }
+    .login_box {
+        top: 40px;
+        left: -5%;
+    }
+}
+@media (max-width:546px) {
+    .login_welcome {
+        font-size: 60px;
+        left: -3%;
+    }
+    .login_h3 {
+        top: 14px;
+        font-size: 25px;
+        left: -1%;
+    }
+    .login_box {
+        top: 40px;
+        left: 0%;
+    }
+}
