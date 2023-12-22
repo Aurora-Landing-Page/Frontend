@@ -1,0 +1,138 @@
+.nav {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: url("https://media.istockphoto.com/id/1445895192/vector/retro-sci-fi-background-futuristic-grid-landscape-of-the-80s-90s.jpg?s=612x612&w=0&k=20&c=WGCeQ1YGz5KxOhViPXfjlhFAltH-3pkypDFtkKIHq30=");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10;
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+  }
+  
+  .nav_link{
+    text-decoration: none;
+    color: white;
+  }
+  .nav.open {
+    visibility: visible;
+    opacity: 1;
+  }
+  .nav_ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    position: absolute;
+    height: 100vh;
+  }
+  .nav_li {
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.3s;
+  }
+  .nav_li:hover {
+    transform: scale(1.3);
+  }
+  
+  .burger {
+    position: fixed;
+    border: 0;
+    background: none;
+    outline: 0;
+    padding: 0;
+    cursor: pointer;
+    top: 40px;
+    right: 50px;
+    width: 60px;
+    z-index: 20;
+    transition: border-bottom 0.8s ease-in-out;
+    height: 100px;
+  }
+  .burger::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+  .burger,
+  .burger::before,
+  .burger::after {
+    border-bottom: 5px solid black;
+  }
+  .burger_white,
+  .burger_white::before,
+  .burger_white::after {
+    border-bottom: 5px solid white;
+  }
+  .burger::before,
+  .burger::after {
+    display: block;
+    content: '';
+    margin-bottom: 10px;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .burger.open {
+    border-bottom: 5px solid transparent;
+  }
+  .open.burger::before,
+  .open.burger::after {
+    border-bottom: 5px solid black;
+  }
+  .open.burger::before {
+    transform: rotate(405deg) translateY(7px) translateX(7px);
+  }
+  .open.burger::after {
+    transform: rotate(-405deg) translateY(-3px) translateX(3px);
+  }
+  
+  @media only screen and (max-width: 1366px) {
+    .nav_li {
+      font-size: 28px;
+      letter-spacing: 5px;
+    }
+    .burger {
+      top: 15px;
+      right: 40px;
+      width: 50px;
+    }
+    .burger::before,
+    .burger::after {
+      margin-bottom: 8px;
+    }
+  }
+  
+  @media only screen and (max-width: 500px) {
+    .nav_ul {
+      transform: translateY(-8vh);
+    }
+    .nav_li {
+      font-size: 24px;
+    }
+    .burger {
+      top: 15px;
+      right: 10px;
+      width: 50px;
+    }
+    .burger::before,
+    .burger::after {
+      margin-bottom: 8px;
+    }
+  }
+  
